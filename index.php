@@ -17,6 +17,7 @@
 
 <?php
 
+//data_default_timzone_set('Asia/Tokyo');
 const THREAD_FILE = 'thread.txt';
 
 function readData() {
@@ -37,6 +38,7 @@ function writeData() {
     $contents = nl2br($contents);
 
     $data = "<hr>\n";
+    $data = $data."<p>投稿日時:".date('Y/m/d H:i:s')."</p>\n";
     $data = $data."<p>投稿者:".$personal_name."</p>\n";
     $data = $data."<p>内容:</p>\n";
     $data = $data."<p>".$contents."</p>\n";
@@ -57,7 +59,7 @@ function writeData() {
 
     fclose($fp);
 
-    //ブラウザのリロード対策
+    // ブラウザのリロード対策
     $redirect_url = $_SERVER['HTTP_REFERER'];
     header("Location: $redirect_url");
     exit;
