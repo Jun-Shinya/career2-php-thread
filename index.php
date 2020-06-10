@@ -11,6 +11,7 @@
     <textarea name="contents" rows="8" cols="40" placeholder="内容" required>
 </textarea><br><br>
     <input type="submit" name="btn" value="投稿する">
+    <input type="delete" name="btn" value="投稿を削除する">
 </form>
 
 <h2>スレッド</h2>
@@ -63,6 +64,10 @@ function writeData() {
     $redirect_url = $_SERVER['HTTP_REFERER'];
     header("Location: $redirect_url");
     exit;
+}
+
+function clearData () {
+    delete.writeData();
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
