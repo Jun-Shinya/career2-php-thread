@@ -66,10 +66,7 @@ function writeData() {
 
     fclose($fp);
 
-    // ブラウザのリロード対策
-    $redirect_url = $_SERVER['HTTP_REFERER'];
-    header("Location: $redirect_url");
-    exit;
+    
 }
 
 function clearData () {
@@ -82,6 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         writeData();
     }
+
+    // ブラウザのリロード対策
+    $redirect_url = $_SERVER['HTTP_REFERER'];
+    header("Location: $redirect_url");
+    exit;
 }
 readData();
 
