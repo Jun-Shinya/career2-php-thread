@@ -1,3 +1,5 @@
+<!--shinya-->
+
 <html>
 <head><title>掲示板</title></head>
 <body>
