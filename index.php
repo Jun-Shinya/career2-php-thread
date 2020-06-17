@@ -13,10 +13,14 @@
     <textarea name="contents" rows="8" cols="40" placeholder="内容" required>
 </textarea><br><br>
     <input type="submit" name="btn" value="投稿する">
-    <input type="delete" name="btn" value="投稿を削除する">
 </form>
 
 <h2>スレッド</h2>
+
+<form method="POST" action="<?php print($_SERVER['PHP_SELF'])?>">
+    <input type="hidden" name="method" value="DELETE">
+    <button type="submit">投稿内容を全削除</button>
+</form>
 
 <?php
 
@@ -69,13 +73,16 @@ function writeData() {
 }
 
 function clearData () {
-    delete.writeData();
+    file_put_contents(THREAD_FILE, "");
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    writeData();
+    if(isset($_POST["method"]) && $_POST["method"] === "DELETE"){
+        clearData();
+    } else {
+        writeData();
+    }
 }
-
 readData();
 
 ?>
