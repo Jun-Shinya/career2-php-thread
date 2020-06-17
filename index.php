@@ -1,25 +1,30 @@
 <!--shinya-->
 
 <html>
-<head><title>掲示板</title></head>
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<title>掲示板</title>
+
+
+</head>
 <body>
 
-<h1>掲示板App</h1>
+<h1 class="text-center">掲示板App</h1>
 
-<h2>投稿フォーム</h2>
+<h2 class="text-center">投稿フォーム</h2>
 
-<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>">
+<form method="POST" action="<?php print($_SERVER['PHP_SELF']) ?>" class="text-center">
     <input type="text" name="personal_name" placeholder="名前" required><br><br>
     <textarea name="contents" rows="8" cols="40" placeholder="内容" required>
 </textarea><br><br>
-    <input type="submit" name="btn" value="投稿する">
+    <input type="submit" name="btn" value="投稿する" class="btn btn-primary">
 </form>
 
-<h2>スレッド</h2>
+<h2 class="text-center">スレッド</h2>
 
-<form method="POST" action="<?php print($_SERVER['PHP_SELF'])?>">
+<form method="POST" action="<?php print($_SERVER['PHP_SELF'])?>" class="text-center">
     <input type="hidden" name="method" value="DELETE">
-    <button type="submit">投稿内容を全削除</button>
+    <button type="submit" class="btn btn-danger">投稿内容を全削除</button>
 </form>
 
 <?php
@@ -88,6 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 readData();
 
 ?>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>
