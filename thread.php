@@ -38,13 +38,16 @@ class Thread
      */
     public function post(string $personal_name, string $contents)
     {
-        $stmt = $this->dbh->prepare("INSERT INTO `thread` (name, content) VALUE ($personal_name, $)");
+        $sql ="INSERT INTO `thread` (name, content) VALUE (:name, :content)";
+        $stmt = $this->dbh->prepare($sql);
         $stmt->bindParam(':name', $personal_name, PDO::PARAM_STR);
         $stmt->bindParam(':content', $contents, PDO::PARAM_STR);
         $stmt->execute();
     }
 
     public function delete() {
-        file_put_contents(self::THREAD_FILE, "");
+        $sql = "UPDATE `thread` SET `deleted_at` = NOW()";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute();
     }
 }

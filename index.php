@@ -1,5 +1,34 @@
 <!--shinya-->
 
+<?php
+session_start();
+
+function setToken()
+{
+    $token = sha1(uniqid(mt_rand(), true));
+    $_SESSION['token'] = $token;
+}
+
+function checkToken()
+{
+    if (empty($_SESSION['token'])) {
+        echo "Sessionが空です";
+        exit;
+    }
+
+    if (($_SESSION['token']) !== $_POST['token']) {
+        echo "不正な投稿です。";
+        exit;
+    }
+
+    $_SESSION['token'] = null;
+}
+
+if (empty($_SESSION['token'])) {
+    setToken();
+}
+?>
+
 <html>
 <head>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
