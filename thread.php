@@ -32,15 +32,16 @@ class Thread
         return $res;
     }
 
+    /**
+     * @param string $personal_name
+     * @param string $contents
+     */
     public function post(string $personal_name, string $contents)
     {
-        $data = "<hr>\n";
-        $data = $data."<p>投稿日時: ".date("Y/m/d H:i:s")."</p>\n";
-        $data = $data."<p>投稿者:".$personal_name."</p>\n";
-        $data = $data."<p>内容:</p>\n";
-        $data = $data."<p>".$contents."</p>\n";
-
-        file_put_contents(self::THREAD_FILE, $data, FILE_APPEND);
+        $stmt = $this->dbh->prepare("INSERT INTO `thread` (name, content) VALUE ($personal_name, $)");
+        $stmt->bindParam(':name', $personal_name, PDO::PARAM_STR);
+        $stmt->bindParam(':content', $contents, PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     public function delete() {
