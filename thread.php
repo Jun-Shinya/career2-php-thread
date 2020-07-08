@@ -17,7 +17,8 @@ class Thread
     public function getList()
     {
         $res = "";
-        $stmt = $this->dbh->query("SELECT * FROM `thread` WHERE `deleted_at` IS NULL ORDER BY `created_at` ASC");
+        $sql = "SELECT * FROM `thread` WHERE `deleted_at` IS NULL ORDER BY `created_at` DESC";
+        $stmt = $this->dbh->query($sql);
         while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
             $created_at = $row["created_at"];
             $name = $row["name"];
